@@ -27,7 +27,7 @@ public class FiiController {
 
     @GetMapping("/")
     public ResponseEntity<?> home(){
-        return new ResponseEntity<>("https://pequenoinvestidoapi.herokuapp.com/swagger-ui.html#", HttpStatus.OK);
+        return new ResponseEntity<>("https://localhost:8080/swagger-ui.html#", HttpStatus.OK);
     }
 
     @GetMapping("/cotacao")

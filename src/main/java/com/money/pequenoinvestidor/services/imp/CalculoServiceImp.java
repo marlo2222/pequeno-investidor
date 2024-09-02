@@ -1,7 +1,7 @@
 package com.money.pequenoinvestidor.services.imp;
 
 import com.money.pequenoinvestidor.services.CalculoService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;

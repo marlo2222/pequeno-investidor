@@ -3,14 +3,14 @@ package com.money.pequenoinvestidor.services.imp;
 import com.money.pequenoinvestidor.model.Fii;
 import com.money.pequenoinvestidor.model.Ifix;
 import com.money.pequenoinvestidor.services.SeletoresService;
-import com.vdurmont.emoji.EmojiParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
@@ -90,6 +90,11 @@ public class SeletoresServiceImp implements SeletoresService {
                 doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(5).html(),
                 doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(6).html(),
                 LocalDate.now().toString());
+    }
+
+    @Override
+    public String informacoesIfix(Document doc) {
+        return null;
     }
 
 

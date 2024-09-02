@@ -23,49 +23,49 @@ public class AcoesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/informacaoAcao")
     public ResponseEntity informacoes(@RequestParam(value = "codigo")String codigo) throws IOException {
-        /*Acao acao = acoesService.gerarInformacoesAcao(codigo);
+        Acao acao = acoesService.gerarInformacoesAcao(codigo);
         if (acao != null){
             return new ResponseEntity<>(acao, HttpStatus.OK);
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não encontramos a ação que você tentou acessar.");
-        }*/
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        }
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/valuation")
     public ResponseEntity valuationAcao(@RequestParam(value = "codigo")String codigo) throws IOException {
-       /* Acao acao = acoesService.gerarInformacoesAcao(codigo);
+        Acao acao = acoesService.gerarInformacoesAcao(codigo);
         if (acao != null){
             return new ResponseEntity<>(acoesService.montarValuation(acao), HttpStatus.OK);
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não encontramos a ação que você tentou acessar.");
-        }*/
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        }
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/bot")
     public ResponseEntity informacoesBot(){
-        //return ResponseEntity.status(HttpStatus.OK).body(acoesService.dadosBot());
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(acoesService.dadosBot());
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/bolsa")
     public ResponseEntity bolsaValores(){
-        //return ResponseEntity.status(HttpStatus.OK).body("Ok");
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body("Ok");
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/bolsa/resultados")
     public ResponseEntity bolsaValoresResultados() throws IOException {
-        //return ResponseEntity.status(HttpStatus.OK).body(acoesService.resultadosBolsa());
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(acoesService.resultadosBolsa());
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
 
     @RequestMapping(value ="/dividendos/ano" ,method = RequestMethod.GET)
     public ResponseEntity dividendosPorAcao(@RequestParam(value = "codigo")String codigo,
                                             @RequestParam(value = "valorAplicado") Double valorAplicado) throws IOException {
-        /*Acao acao = acoesService.gerarInformacoesAcao(codigo);
+        Acao acao = acoesService.gerarInformacoesAcao(codigo);
         if (acao != null){
             return new ResponseEntity<>(acoesService.montarDividendosRecebidos(acao, valorAplicado), HttpStatus.OK);
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não encontramos a ação que você tentou acessar.");
-        }*/
-        return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
+        }
+        //return new ResponseEntity<>("Sistema de ações indisponivel", HttpStatus.OK);
     }
 }
