@@ -1,0 +1,23 @@
+schema-version: v2
+kind: manifest
+spec:
+  type: app
+  plugins:
+    - name: qa-tools/mutation-java@0.1.1
+      alias: mutation-java-1721344625328
+      type: app
+      inputs:
+        gerenciador: Maven
+        lib_log: org.slf4j
+        mutation_coverage: 50
+        mutantes_group: DEFAULTS
+        targetClass: com.money.pequenoinvestidor.services.imp.CalculoServiceImp
+        targetTests: com.money.pequenoinvestidor.TestCalculoServiceImp
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+  global-inputs: {}
+  global-computed-inputs: {}
