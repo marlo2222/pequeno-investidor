@@ -29,20 +29,20 @@ public class SeletoresServiceImp implements SeletoresService {
         return doc.getElementsByClass(elemento);
     }
     public String buscarFiiValor(Document doc){
-        return doc.getElementById("stock-price").getElementsByClass("price").html();
+        return doc.select("div.headerTicker__content__price p").first().text();
     }
 
     public String buscarFiiValorizacaoDia(Document doc){
-        return doc.getElementById("stock-price").getElementsByClass("percentage positive").html();
+        return doc.select("div.headerTicker__content__price span").first().text();
     }
     public String buscarLiquidezDiaria(Document doc){
         return doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(0).html();
     }
     public String buscarDividend(Document doc){
-        return doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(1).html();
+        return doc.select("div.indicators__box p b").get(1).text();
     }
     public String buscarDivideldYield( Document doc){
-        return doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(2).html();
+        return doc.select("div.indicators__box p b").get(2).text();
     }
     public String buscarPatrimonioLiquido( Document doc){
         return doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(3).html();
@@ -78,17 +78,17 @@ public class SeletoresServiceImp implements SeletoresService {
     }
     public Fii criarModelo(String URL, String fii) throws IOException {
         Document doc = buscarInformacoes(URL);
-        final String valorizacao = doc.getElementById("stock-price").getElementsByClass("percentage positive").html();
+        //final String valorizacao = doc.getElementById("stock-price").getElementsByClass("percentage positive").html();
         return new Fii(fii, fii, 
-                doc.getElementById("stock-price").getElementsByClass("price").html(),
-                doc.getElementById("stock-price").getElementsByClass(valorizacao.isEmpty() ? "percentage negative" : "percentage positive").html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(0).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(1).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(2).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(3).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(4).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(5).html(),
-                doc.getElementById("main-indicators-carousel").getElementsByClass("indicator-value").get(6).html(),
+                doc.select("div.headerTicker__content__price p").first().text(),
+                doc.select("div.headerTicker__content__price span").first().text(),
+                doc.select("div.indicators__box p b").get(0).text(),
+                doc.select("div.indicators__box p b").get(1).text(),
+                doc.select("div.indicators__box p b").get(2).text(),
+                doc.select("div.indicators__box p b").get(3).text(),
+                doc.select("div.indicators__box p b").get(4).text(),
+                doc.select("div.indicators__box p b").get(5).text(),
+                doc.select("div.indicators__box p b").get(6).text(),
                 LocalDate.now().toString());
     }
 
@@ -99,10 +99,10 @@ public class SeletoresServiceImp implements SeletoresService {
 
 
     public List<Ifix> ListAllIfix(Document doc){
-       Elements lista = doc.getElementById("search-menu-select").getElementsByClass("form-control fe-input").select("option");
-       for (Element l: lista) {
-           if (l.hasText()){
-               ifixList.add(new Ifix(l.val(), l.text()));
+       Elements lista = doc.getElementsByClass("link-tickers-container");
+       for (Element element: lista) {
+           if (element.hasText()){
+               ifixList.add(new Ifix(element.select("div.tickerBox__desc").first().text(), element.select("div[data-element=ticker-box-title]").first().text()));
             }
         }
        return ifixList;
